@@ -31,7 +31,15 @@ def printResults(data):
         print (i["properties"] ["place"])
     
         print("______________________")
-      
+        
+# Print events that have a magnitude of 4 of more
+
+    for i in theJSONdata ["features"]:
+        if i["properties"] ["mag"] >= 4.0:
+            #this formats a decimal with 2 spaces
+            print ("%2.1f" % i ["properties"] ["mag"], i["properties"] ["place"])
+            
+        print("______________________")
         
     
     
