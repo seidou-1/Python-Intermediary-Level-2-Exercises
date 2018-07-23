@@ -15,17 +15,22 @@ like any other Python object
 def printResults(data):
     theJSONdata = json.loads(data)
     
-    
+#Access the contents of the JSON like any other Python object:   
 
     if "title" in theJSONdata["metadata"]:
         print (theJSONdata["metadata"]["title"])
  
-#Access the contents of the JSON like any other Python object:
-
+#output the number of events plus the magnitude & each event name
     count = theJSONdata["metadata"]["count"]
     print (str(count) + " events recorded") 
            
-#output the number of events plus the magnitude & each event name
+
+#Output an array of objects that describes each earthquake event:
+
+    for i in theJSONdata["features"]:
+        print (i["properties"] ["place"])
+    
+        print("______________________")
       
         
     
