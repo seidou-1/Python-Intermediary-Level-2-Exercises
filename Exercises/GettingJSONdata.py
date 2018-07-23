@@ -16,12 +16,18 @@ def printResults(data):
     theJSONdata = json.loads(data)
     
     
-"""
-Access the contents of the JSON like any other Python object:
-"""    
 
-    
-    
+    if "title" in theJSONdata["metadata"]:
+        print (theJSONdata["metadata"]["title"])
+ 
+#Access the contents of the JSON like any other Python object:
+
+    count = theJSONdata["metadata"]["count"]
+    print (str(count) + " events recorded") 
+           
+#output the number of events plus the magnitude & each event name
+      
+        
     
     
     
