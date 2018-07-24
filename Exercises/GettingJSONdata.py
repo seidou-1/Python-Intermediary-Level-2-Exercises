@@ -3,6 +3,7 @@
 '''
 import urllib.request
 import json
+from builtins import str
 
 """
 This printResults function takes an argument called data 
@@ -42,7 +43,16 @@ def printResults(data):
         print("______________________")
         
     
-    
+# Number of people that recorded some type of feeling (uisng the felt property)
+
+    print("Events that were felt: ")
+    for i in theJSONdata ["features"]:
+        feltReports = i["properties"] ["felt"]
+        if feltReports != None:
+            if feltReports > 0:
+                print("%2.1f" % i ["properties"] ["mag"], i["properties"] ["place"],
+                      
+                      " reported " + str (feltReports) + " times")    
     
     
     
