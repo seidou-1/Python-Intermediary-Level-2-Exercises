@@ -1,9 +1,8 @@
 '''
 @author: laptop
 '''
-import urllib.request
+import urllib.request # instead of urllib2 like in Python 2.7
 import json
-from builtins import str
 
 """
 This printResults function takes an argument called data 
@@ -22,7 +21,7 @@ def printResults(data):
         print (theJSONdata["metadata"]["title"])
  
 #output the number of events plus the magnitude & each event name
-    count = theJSONdata["metadata"]["count"]
+    count = theJSONdata["metadata"]["count"];
     print (str(count) + " events recorded") 
            
 
@@ -31,7 +30,7 @@ def printResults(data):
     for i in theJSONdata["features"]:
         print (i["properties"] ["place"])
     
-        print("______________________")
+    print("______________________\n")
         
 # Print events that have a magnitude of 4 of more
 
@@ -40,7 +39,7 @@ def printResults(data):
             #this formats a decimal with 2 spaces
             print ("%2.1f" % i ["properties"] ["mag"], i["properties"] ["place"])
             
-        print("______________________")
+    print("______________________")
         
     
 # Number of people that recorded some type of feeling (uisng the felt property)
@@ -48,8 +47,8 @@ def printResults(data):
     print("Events that were felt: ")
     for i in theJSONdata ["features"]:
         feltReports = i["properties"] ["felt"]
-        if feltReports != None:
-            if feltReports > 0:
+        if (feltReports != None):
+            if (feltReports > 0):
                 print("%2.1f" % i ["properties"] ["mag"], i["properties"] ["place"],
                       
                       " reported " + str (feltReports) + " times")    
@@ -66,7 +65,7 @@ def main():
     uses to deliver JSON data for all earthquakes within the last day with a magnitude 
     of 2.5 or greater 
     """
-    dataFeed = "https://earthquake.usgs.gov/earthquakes/feed/v1.0/summary/2.5"
+    dataFeed = "http://earthquake.usgs.gov/earthquakes/feed/v1.0/summary/2.5_day.geojson"
 
     #Hit the URL and read the data
     webUrl = urllib.request.urlopen(dataFeed)
@@ -77,7 +76,7 @@ def main():
         data = webUrl.read()#read the contents of the url
         printResults(data)#Call the printResults function and print the data
     else:
-        print("Received error, cannot parse results")
-        
-    if __name__ == "__main__":
-        main()
+        print("Received error, cannot parse results " + str(webUrl.getcode()))
+
+if __name__ == "__main__":
+    main();       
